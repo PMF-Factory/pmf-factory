@@ -75,12 +75,18 @@ html,body{overflow-x:clip}body{background:var(--bg);color:var(--ink)}
 
 /* ---- site additions ---- */
 img{height:auto}
+.p8 .hero h1{font-size:clamp(44px,7vw,104px)}
+.p8 .dl h2{font-size:clamp(32px,4vw,56px)}
+.p8 .voices h2{font-size:clamp(32px,4vw,56px);margin-bottom:36px}
+.t figcaption .li{margin-left:auto;flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:10px;color:#0A66C2;transition:background-color .2s}
+.t figcaption .li:hover{background:#EAF2FB}
+.t figcaption > span{min-width:0}
 .belt{gap:24px}
-.belt .t{width:520px;padding:40px;border-radius:32px;gap:32px}
-.belt .t blockquote{font-size:19px;line-height:1.55;letter-spacing:-.005em}
-.belt .t figcaption img{width:60px;height:60px}
-.belt .t strong{font-size:16px}.belt .t small{font-size:14px}
-@media (max-width:860px){.belt .t{width:330px;padding:30px}.belt .t blockquote{font-size:17px}}
+.belt .t{width:640px;padding:48px;border-radius:36px;gap:36px}
+.belt .t blockquote{font-size:23px;line-height:1.5;letter-spacing:-.01em}
+.belt .t figcaption img{width:72px;height:72px}
+.belt .t strong{font-size:18px}.belt .t small{font-size:15px}
+@media (max-width:860px){.belt .t{width:340px;padding:30px}.belt .t blockquote{font-size:18px}.belt .t figcaption img{width:56px;height:56px}}
 .hero-sub{position:relative;z-index:1;margin:28px 0 0;font-size:clamp(24px,3.2vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.1;max-width:900px}
 .p8 .hero{min-height:0;padding-bottom:0}
 .p8 .dl{padding-top:72px;padding-bottom:96px}
