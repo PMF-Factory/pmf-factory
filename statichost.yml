@@ -1,0 +1,4 @@
+# statichost.eu build configuration
+# Plain HTML site: no static site generator, no build step.
+# The repository root is published as-is.
+public: .
