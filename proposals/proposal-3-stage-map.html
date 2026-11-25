@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMF Factory — Proposal 3: Stage Map</title>
+<link rel="icon" href="../assets/brand/cube-pinkpurple.png">
+<style>
+@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Regular.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Medium.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:600;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-SemiBold.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Bold.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:800;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-ExtraBold.woff") format("woff")}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
+.logo img{height:46px;width:auto}
+.nav nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500}
+.nav nav a{text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:16px;text-decoration:none;padding:14px 26px;transition:transform .15s ease, background-color .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.checks{list-style:none;padding:0;margin:0}
+.checks li{display:flex;gap:12px;align-items:baseline;padding:6px 0}
+.t{margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.t blockquote{margin:0;font-size:16px;line-height:1.6}
+.t figcaption{display:flex;gap:14px;align-items:center}
+.t figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.t figcaption strong{display:block;font-size:15px}
+.t figcaption small{display:block;font-size:13px;line-height:1.4;opacity:.8}
+.proposal-tag{position:fixed;right:16px;bottom:16px;z-index:50;font:600 12px/1 "Inter",sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:10px 14px;background:#0B0B0F;color:#fff;text-decoration:none;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 6px 20px rgba(0,0,0,.25)}
+@media (max-width:860px){.proposal-tag{font-size:10px;padding:8px 10px}.nav nav a:not(.btn){display:none}.logo img{height:36px}}
+
+:root{--bg:#F7F5F0;--paper:#FFFFFF;--ink:#1A1A1A;--muted:#5E5A52;--line:#E4E0D6;--accent:#6B1FB0;--blue:#48FEFF;--yellow:#FFF10E;--green:#79FF38;--purple:#AA35F1;--magenta:#D900FF;
+--blue-tint:#E3FFFF;--yellow-tint:#FFFBC2;--green-tint:#E9FFDD;--purple-tint:#F1E3FD;--focus:#6B1FB0}
+body{background:var(--bg);color:var(--ink)}
+.nav{background:var(--bg)}
+.btn{border-radius:12px}
+.btn-primary{background:var(--ink);color:#fff}
+.btn-primary:hover{background:#000}
+.btn-secondary,.btn-nav{background:var(--paper);color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+.btn-secondary:hover,.btn-nav:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.btn-nav{padding:10px 18px;font-size:14px}
+.hero{background:var(--paper);border-radius:28px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:72px 64px;margin-top:12px;position:relative;overflow:hidden}
+.eyebrow{font-size:14px;font-weight:600;color:var(--accent);margin:0 0 18px}
+h1{font-size:clamp(42px,5.6vw,72px)}
+.sub{font-size:clamp(19px,2.1vw,24px);font-weight:500;margin:16px 0 16px}
+.lead{color:var(--muted);font-size:17px;margin:0 0 32px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.book{position:relative;justify-self:center}
+.book .cover{width:320px;border-radius:8px;box-shadow:0 24px 60px rgba(26,26,26,.18)}
+.book .cube{position:absolute;width:110px;left:-56px;bottom:-30px}
+.map{padding:88px 0 24px}
+.map h2,.voices h2{font-size:clamp(30px,3.6vw,44px)}
+.map p.intro{color:var(--muted);font-size:17px;max-width:620px;margin:14px 0 40px}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.stg{border-radius:20px;padding:26px 24px 28px;background:var(--t);position:relative}
+.stg .cube{width:64px;margin-bottom:26px}
+.stg small{font-size:13px;font-weight:600;color:var(--muted)}
+.stg h3{font-size:21px;letter-spacing:-.015em;line-height:1.2;margin:8px 0 14px}
+.stg p{margin:0;font-size:15px;color:#3A3732}
+.stg .status{display:inline-block;margin-top:18px;font-size:13px;font-weight:600;background:var(--paper);padding:6px 12px;border-radius:999px;text-decoration:none}
+.s-blue{--t:var(--blue-tint)}.s-yellow{--t:var(--yellow-tint)}.s-green{--t:var(--green-tint)}.s-purple{--t:var(--purple-tint)}
+.voices{padding:88px 0 104px}
+.voices h2{margin-bottom:36px}
+.tgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.t{grid-column:span 2;background:var(--paper);border-radius:20px;padding:28px;box-shadow:inset 0 0 0 1px var(--line)}
+.t3,.t4{grid-column:span 3}
+.t figcaption img{box-shadow:0 0 0 3px var(--c)}
+.t0{--c:var(--blue)}.t1{--c:var(--yellow)}.t2{--c:var(--green)}.t3{--c:var(--purple)}.t4{--c:var(--magenta)}
+.foot{background:var(--paper);padding:48px 0;border-top:1px solid var(--line)}
+.foot-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between}
+.foot-in>img{height:72px;width:auto}
+.foot-links{display:flex;gap:24px;font-weight:500}
+.fine{color:var(--muted);font-size:13px;width:100%;margin:0}
+@media (max-width:960px){.hero{grid-template-columns:1fr;padding:44px 28px}.stages{grid-template-columns:1fr 1fr}.tgrid{grid-template-columns:1fr}.t,.t3,.t4{grid-column:auto}.book .cube{left:-20px}}
+@media (max-width:560px){.stages{grid-template-columns:1fr}}
+
+</style></head>
+<body class="p3">
+<header class="nav"><div class="wrap nav-in">
+  <a class="logo" href="index.html"><img src="../assets/brand/pmf-logo.svg" alt="PMF Factory"></a>
+  <nav><a href="#book">The book</a><a href="#voices">What people say</a><a href="../book.html">Section III</a>
+  <a class="btn btn-nav" href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></nav></div></header>
+<main class="wrap">
+<section class="hero" id="book"><div><p class="eyebrow">Free e-book · Sections I &amp; II available now</p>
+<h1>Product-Market Fit Book</h1>
+<p class="sub">How to Build a Business That Scales</p>
+<p class="lead">Including success stories of <strong>Bexio</strong>, <strong>Xovis</strong> and <strong>Cron</strong>.</p><div class="ctas"><a class="btn btn-primary" href="https://share-eu1.hsforms.com/1mr8lliBuQYeUVpN2lhS3Tw2du7hm">Download for free</a>
+<a class="btn btn-secondary" href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></div></div>
+<div class="book"><img class="cover" src="../assets/images/image-3.png" alt="Book cover: Product-Market Fit — How to Build a Business That Scales, by Michael Sauter"><img class="cube" src="../assets/brand/cube-pinkpurple.png" alt="" aria-hidden="true"></div></section>
+<section class="map"><h2>Four steps, four cubes</h2><p class="intro">Each stage of the PMF method has its own cube colour — the same colour marks it everywhere: in the book, on slides and on this site.</p>
+<div class="stages"><div class="stg s-blue"><img class="cube" src="../assets/brand/cube-blue.png" alt="" aria-hidden="true"><small>Section I</small><h3>Understand</h3><p>Understanding Product-Market Fit — what it is, and how to recognise it.</p><span class="status">✓ Available now</span></div><div class="stg s-yellow"><img class="cube" src="../assets/brand/cube-yellow.png" alt="" aria-hidden="true"><small>Section II</small><h3>Focus</h3><p>How to focus on Product-Market Fit before anything else.</p><span class="status">✓ Available now</span></div><div class="stg s-green"><img class="cube" src="../assets/brand/cube-green.png" alt="" aria-hidden="true"><small>Section III</small><h3>Iterate</h3><p>How to iterate towards Product-Market Fit with tools and processes.</p><a class="status" href="../book.html">Coming soon — sign up</a></div><div class="stg s-purple"><img class="cube" src="../assets/brand/cube-purple.png" alt="" aria-hidden="true"><small>The outcome</small><h3>Scale</h3><p>Build a business that scales — without scaling prematurely.</p><a class="status" href="https://share-eu1.hsforms.com/1mr8lliBuQYeUVpN2lhS3Tw2du7hm">Read the success stories</a></div></div></section>
+<section class="voices" id="voices"><h2>What people say</h2><div class="tgrid"><figure class="t t0" >
+  <blockquote>“Reaching a strong product-market fit has truly been a game changer for the success of Bexio. That's why I highly recommend delving into this book and learning as much as possible about how to achieve product-market fit.”</blockquote>
+  <figcaption><img src="../assets/images/Jeremias.webp" alt="Jeremias Meier"><span><strong>Jeremias Meier</strong><small>Co-Founder of Bexio, Partner at session.vc</small></span></figcaption>
+</figure>
+<figure class="t t1" >
+  <blockquote>“Many startup founders talk about product-market fit, but very few have a systematic approach to achieving it quickly and cost-effectively. The structured approach presented in this book is a great guide to reach product-market fit faster and more efficiently.”</blockquote>
+  <figcaption><img src="../assets/images/thomas-duebendorfer.webp" alt="Dr. Thomas Dübendorfer"><span><strong>Dr. Thomas Dübendorfer</strong><small>Internet Entrepreneur, Angel Investor, and President at SICTIC</small></span></figcaption>
+</figure>
+<figure class="t t2" >
+  <blockquote>“This book has what it takes to become a standard work in the startup environment. It deals with a startup's fundamental question: How can I grow successfully? This book answers that question in a credible way.”</blockquote>
+  <figcaption><img src="../assets/images/thierry-kneissler.webp" alt="Thierry Kneissler"><span><strong>Thierry Kneissler</strong><small>Co-Founder Twint, Board Member of various startups</small></span></figcaption>
+</figure>
+<figure class="t t3" >
+  <blockquote>“This handbook is a powerful read for investors to secure a well-use of provided funds and enhances the chance of a positive return. It is in the interest of investors to avoid premature scaling. Therefore, the importance of a strong product-market fit before scaling cannot be underemphasized.”</blockquote>
+  <figcaption><img src="../assets/images/ruediger-petrikowski.webp" alt="Rüdiger Petrikowski"><span><strong>Rüdiger Petrikowski</strong><small>Vice President at ZID KMU Capital, Regional Director Berne at SICTIC</small></span></figcaption>
+</figure>
+<figure class="t t4" >
+  <blockquote>“This book is an easy read, packed with relevant facts, clear use cases and quotes that hit the mark. Written from a start-up perspective with personal experience, it's a practical guide that motivates and reminds entrepreneurs of the challenges they may face, including the pitfalls of rapid growth.”</blockquote>
+  <figcaption><img src="../assets/images/kathrin-wolff-schmandt.webp" alt="Kathrin Wolff Schmandt"><span><strong>Kathrin Wolff Schmandt</strong><small>Board Member/Strategic Growth Specialist / Innovation Accelerator</small></span></figcaption>
+</figure></div></section>
+</main><footer class="foot"><div class="wrap foot-in">
+<img src="../assets/brand/pmf-logo-slogan.svg" alt="PMF Factory — Build a business that scales">
+<div class="foot-links"><a href="https://share-eu1.hsforms.com/1mr8lliBuQYeUVpN2lhS3Tw2du7hm">Download the e-book</a><a href="../book.html">Sign up for Section III</a><a href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></div>
+<p class="fine">© 2026 PMF Factory</p></div></footer>
+<a class="proposal-tag" href="index.html">Proposal 3 · Stage Map — all proposals</a>
+</body></html>

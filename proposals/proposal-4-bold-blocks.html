@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PMF Factory — Proposal 4: Bold Blocks</title>
+<link rel="icon" href="../assets/brand/cube-pinkpurple.png">
+<style>
+@font-face{font-family:"Inter";font-weight:400;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Regular.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:500;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Medium.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:600;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-SemiBold.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:700;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-Bold.woff") format("woff")}
+@font-face{font-family:"Inter";font-weight:800;font-style:normal;font-display:swap;src:url("../assets/fonts/Inter/Inter-ExtraBold.woff") format("woff")}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;font-feature-settings:"cv11","ss01";-webkit-font-smoothing:antialiased;line-height:1.55}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:24px;height:84px}
+.logo img{height:46px;width:auto}
+.nav nav{display:flex;align-items:center;gap:28px;font-size:15px;font-weight:500}
+.nav nav a{text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:16px;text-decoration:none;padding:14px 26px;transition:transform .15s ease, background-color .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+h1,h2,h3{margin:0;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.checks{list-style:none;padding:0;margin:0}
+.checks li{display:flex;gap:12px;align-items:baseline;padding:6px 0}
+.t{margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.t blockquote{margin:0;font-size:16px;line-height:1.6}
+.t figcaption{display:flex;gap:14px;align-items:center}
+.t figcaption img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.t figcaption strong{display:block;font-size:15px}
+.t figcaption small{display:block;font-size:13px;line-height:1.4;opacity:.8}
+.proposal-tag{position:fixed;right:16px;bottom:16px;z-index:50;font:600 12px/1 "Inter",sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:10px 14px;background:#0B0B0F;color:#fff;text-decoration:none;border-radius:999px;box-shadow:0 0 0 1px rgba(255,255,255,.3),0 6px 20px rgba(0,0,0,.25)}
+@media (max-width:860px){.proposal-tag{font-size:10px;padding:8px 10px}.nav nav a:not(.btn){display:none}.logo img{height:36px}}
+
+:root{--ink:#0B0B0F;--white:#FFFFFF;--yellow:#FFF10E;--green:#79FF38;--blue:#48FEFF;--purple:#7A1FC7;--purple-bright:#AA35F1;--magenta:#D900FF;--focus:#0B0B0F}
+body{background:var(--white);color:var(--ink)}
+.nav{background:var(--yellow)}
+.btn{border-radius:999px;padding:16px 30px}
+.btn-primary{background:var(--ink);color:var(--white)}
+.btn-primary:hover{background:#2A2A33}
+.btn-secondary,.btn-nav{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-secondary:hover,.btn-nav:hover{background:var(--ink);color:var(--yellow)}
+.btn-nav{padding:10px 20px;font-size:14px}
+.band{position:relative;overflow:hidden}
+.b-yellow{background:var(--yellow)}
+.b-purple{background:var(--purple);color:var(--white)}
+.b-green{background:var(--green)}
+.b-ink{background:var(--ink);color:var(--white)}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;padding-top:64px}
+.eyebrow{display:inline-block;font-size:14px;font-weight:700;background:var(--ink);color:var(--yellow);padding:8px 14px;border-radius:999px;margin:0 0 28px}
+h1{font-size:clamp(56px,9vw,128px);line-height:.92;letter-spacing:-.045em}
+.sub{font-size:clamp(22px,2.6vw,32px);font-weight:700;letter-spacing:-.02em;margin:24px 0 10px}
+.lead{font-size:18px;margin:0 0 32px}
+.ctas{display:flex;flex-wrap:wrap;gap:14px;padding-bottom:72px}
+.hero .bookcol{position:relative;align-self:end}
+.hero .cover{width:100%;max-width:340px;margin-left:auto;transform:translateY(40px) rotate(4deg);box-shadow:0 30px 60px rgba(0,0,0,.25);border-radius:4px}
+.hero .cube{position:absolute;width:150px;left:-30px;top:-10px;z-index:2}
+.secs{display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0}
+.sec{padding:72px 36px 64px;position:relative}
+.sec:nth-child(1){background:var(--blue)}.sec:nth-child(2){background:var(--white)}.sec:nth-child(3){background:var(--green)}
+.sec .num{font-size:96px;font-weight:800;letter-spacing:-.05em;line-height:.8;display:block;margin-bottom:24px}
+.sec small{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sec h3{font-size:26px;letter-spacing:-.02em;line-height:1.15;margin:10px 0 22px}
+.sec .status{font-weight:700;font-size:15px}
+.voices{padding-top:96px;padding-bottom:96px}
+.voices h2{font-size:clamp(40px,6vw,80px);letter-spacing:-.04em;margin-bottom:48px;color:var(--white)}
+.voices .head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.voices .head .cube{width:120px}
+.tgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.t{background:var(--white);color:var(--ink);border-radius:28px;padding:32px}
+.t0{grid-column:1/-1}
+.t0 blockquote{font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.015em;line-height:1.35}
+.cta{display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding-top:72px;padding-bottom:72px}
+.cta h2{font-size:clamp(32px,4.4vw,56px);letter-spacing:-.035em;max-width:640px}
+.cta .row{display:flex;align-items:center;gap:24px}
+.cta .cube{width:110px}
+.foot{padding:56px 0}
+.foot-in{display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between}
+.foot-in>img{height:80px;width:auto}
+.foot-links{display:flex;gap:24px;font-weight:600}
+.fine{color:#B8B8C4;font-size:13px;width:100%;margin:0}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero .cover{max-width:260px;margin:0 auto}.secs{grid-template-columns:1fr}.tgrid{grid-template-columns:1fr}.hero .cube{width:100px;left:0}}
+
+</style></head>
+<body class="p4">
+<header class="nav"><div class="wrap nav-in">
+  <a class="logo" href="index.html"><img src="../assets/brand/pmf-logo.svg" alt="PMF Factory"></a>
+  <nav><a href="#book">The book</a><a href="#voices">What people say</a><a href="../book.html">Section III</a>
+  <a class="btn btn-nav" href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></nav></div></header>
+<main>
+<section class="band b-yellow" id="book"><div class="wrap hero"><div><p class="eyebrow">Free e-book · Sections I &amp; II available now</p>
+<h1>Product-Market Fit Book</h1>
+<p class="sub">How to Build a Business That Scales</p>
+<p class="lead">Including success stories of <strong>Bexio</strong>, <strong>Xovis</strong> and <strong>Cron</strong>.</p><div class="ctas"><a class="btn btn-primary" href="https://share-eu1.hsforms.com/1mr8lliBuQYeUVpN2lhS3Tw2du7hm">Download for free</a>
+<a class="btn btn-secondary" href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></div></div>
+<div class="bookcol"><img class="cube" src="../assets/brand/cube-pinkpurple.png" alt="" aria-hidden="true"><img class="cover" src="../assets/images/image-3.png" alt="Book cover: Product-Market Fit — How to Build a Business That Scales, by Michael Sauter"></div></div></section>
+<section class="secs"><div class="sec"><span class="num">01</span><small>Section I</small><h3>Understanding Product-Market Fit</h3><p class="status">✓ Available now</p></div><div class="sec"><span class="num">02</span><small>Section II</small><h3>How to focus on Product-Market Fit</h3><p class="status">✓ Available now</p></div><div class="sec"><span class="num">03</span><small>Section III</small><h3>How to iterate towards Product-Market Fit</h3><p class="status">Coming soon — <a href="../book.html">sign up now</a></p></div></section>
+<section class="band b-purple" id="voices"><div class="wrap voices"><div class="head"><h2>What people say</h2><img class="cube" src="../assets/brand/cube-yellow.png" alt="" aria-hidden="true"></div><div class="tgrid"><figure class="t t0" >
+  <blockquote>“Reaching a strong product-market fit has truly been a game changer for the success of Bexio. That's why I highly recommend delving into this book and learning as much as possible about how to achieve product-market fit.”</blockquote>
+  <figcaption><img src="../assets/images/Jeremias.webp" alt="Jeremias Meier"><span><strong>Jeremias Meier</strong><small>Co-Founder of Bexio, Partner at session.vc</small></span></figcaption>
+</figure>
+<figure class="t t1" >
+  <blockquote>“Many startup founders talk about product-market fit, but very few have a systematic approach to achieving it quickly and cost-effectively. The structured approach presented in this book is a great guide to reach product-market fit faster and more efficiently.”</blockquote>
+  <figcaption><img src="../assets/images/thomas-duebendorfer.webp" alt="Dr. Thomas Dübendorfer"><span><strong>Dr. Thomas Dübendorfer</strong><small>Internet Entrepreneur, Angel Investor, and President at SICTIC</small></span></figcaption>
+</figure>
+<figure class="t t2" >
+  <blockquote>“This book has what it takes to become a standard work in the startup environment. It deals with a startup's fundamental question: How can I grow successfully? This book answers that question in a credible way.”</blockquote>
+  <figcaption><img src="../assets/images/thierry-kneissler.webp" alt="Thierry Kneissler"><span><strong>Thierry Kneissler</strong><small>Co-Founder Twint, Board Member of various startups</small></span></figcaption>
+</figure>
+<figure class="t t3" >
+  <blockquote>“This handbook is a powerful read for investors to secure a well-use of provided funds and enhances the chance of a positive return. It is in the interest of investors to avoid premature scaling. Therefore, the importance of a strong product-market fit before scaling cannot be underemphasized.”</blockquote>
+  <figcaption><img src="../assets/images/ruediger-petrikowski.webp" alt="Rüdiger Petrikowski"><span><strong>Rüdiger Petrikowski</strong><small>Vice President at ZID KMU Capital, Regional Director Berne at SICTIC</small></span></figcaption>
+</figure>
+<figure class="t t4" >
+  <blockquote>“This book is an easy read, packed with relevant facts, clear use cases and quotes that hit the mark. Written from a start-up perspective with personal experience, it's a practical guide that motivates and reminds entrepreneurs of the challenges they may face, including the pitfalls of rapid growth.”</blockquote>
+  <figcaption><img src="../assets/images/kathrin-wolff-schmandt.webp" alt="Kathrin Wolff Schmandt"><span><strong>Kathrin Wolff Schmandt</strong><small>Board Member/Strategic Growth Specialist / Innovation Accelerator</small></span></figcaption>
+</figure></div></div></section>
+<section class="band b-green"><div class="wrap cta"><h2>Section III is coming. Be the first to read it.</h2>
+<div class="row"><img class="cube" src="../assets/brand/cube-purple.png" alt="" aria-hidden="true"><a class="btn btn-primary" href="../book.html">Sign up now</a></div></div></section>
+</main><div class="band b-ink"><footer class="foot"><div class="wrap foot-in">
+<img src="../assets/brand/pmf-logo-slogan-white.svg" alt="PMF Factory — Build a business that scales">
+<div class="foot-links"><a href="https://share-eu1.hsforms.com/1mr8lliBuQYeUVpN2lhS3Tw2du7hm">Download the e-book</a><a href="../book.html">Sign up for Section III</a><a href="https://meetings-eu1.hubspot.com/michael-sauter?uuid=01936928-e975-4b52-94f2-f57a9d11f961">Book a meeting</a></div>
+<p class="fine">© 2026 PMF Factory</p></div></footer></div>
+<a class="proposal-tag" href="index.html">Proposal 4 · Bold Blocks — all proposals</a>
+</body></html>
